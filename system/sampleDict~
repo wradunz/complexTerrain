@@ -9,6 +9,7 @@
 #includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
 
 type surfaces;
+//type sets; //cannot activate both simutaneously yet.
 
 setFormat raw;
 
@@ -76,6 +77,7 @@ sets
 
 surfaces
 (
+/*
     constantPlane
     {
         type            plane;    // always triangulated
@@ -88,6 +90,26 @@ surfaces
         //- Optional: do not triangulate (only for surfaceFormats that support
         //            polygons)
         //triangulate     false;
+    }*/
+
+    distance
+    {
+        // Isosurface from signed/unsigned distance to surface
+        type            distanceSurface;
+        signed          true;
+
+        // Definition of surface
+        surfaceType     triSurfaceMesh;
+        surfaceName     terrain.stl;
+        // Distance to surface
+        distance        100;
+
+        //cell            false;// optional: use isoSurface instead
+                                // of isoSurfaceCell
+        interpolate     false;
+        regularise      false;  // Optional: do not simplify
+        // mergeTol 1e-10;      // Optional: fraction of mesh bounding box
+                                // to merge points (default=1e-6)
     }
 );
 
