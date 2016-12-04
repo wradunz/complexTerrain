@@ -92,7 +92,7 @@ surfaces
         //triangulate     false;
     }*/
 
-    distance
+    distance1
     {
         // Isosurface from signed/unsigned distance to surface
         type            distanceSurface;
@@ -102,7 +102,26 @@ surfaces
         surfaceType     triSurfaceMesh;
         surfaceName     terrain.stl;
         // Distance to surface
-        distance        100;
+        distance        30;
+
+        //cell            false;// optional: use isoSurface instead
+                                // of isoSurfaceCell
+        interpolate     false;
+        regularise      false;  // Optional: do not simplify
+        // mergeTol 1e-10;      // Optional: fraction of mesh bounding box
+                                // to merge points (default=1e-6)
+    }
+    distance2
+    {
+        // Isosurface from signed/unsigned distance to surface
+        type            distanceSurface;
+        signed          true;
+
+        // Definition of surface
+        surfaceType     triSurfaceMesh;
+        surfaceName     terrain.stl;
+        // Distance to surface
+        distance        50;
 
         //cell            false;// optional: use isoSurface instead
                                 // of isoSurfaceCell
