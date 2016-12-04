@@ -104,13 +104,13 @@ surfaces
         // Distance to surface
         distance        30;
 
-        //cell            false;// optional: use isoSurface instead
+        //cell            true;// optional: use isoSurface instead
                                 // of isoSurfaceCell
-        interpolate     false;
+        interpolate     true;
         regularise      false;  // Optional: do not simplify
-        // mergeTol 1e-10;      // Optional: fraction of mesh bounding box
+        //mergeTol 1e-10;      // Optional: fraction of mesh bounding box
                                 // to merge points (default=1e-6)
-    }
+    }/*
     distance2
     {
         // Isosurface from signed/unsigned distance to surface
@@ -129,7 +129,7 @@ surfaces
         regularise      false;  // Optional: do not simplify
         // mergeTol 1e-10;      // Optional: fraction of mesh bounding box
                                 // to merge points (default=1e-6)
-    }
+    }*/
 );
 
 // ************************************************************************* //
