@@ -44,4 +44,10 @@ timePrecision   6;
 
 runTimeModifiable yes;
 
+functions
+{
+   //#includeFunc singleGraph //activate if singleGraph is to be run automatically
+   #includeFunc residuals //be careful cause it duplicates files when used with singleGraph
+}
+
 // ************************************************************************* //
