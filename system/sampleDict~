@@ -1,0 +1,94 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+#includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
+
+type surfaces;
+
+setFormat raw;
+
+surfaceFormat vtk;
+
+interpolationScheme cellPoint;
+
+// Fields to sample.
+fields
+(
+    U
+);
+
+// Set sampling definition: choice of
+//      uniform             evenly distributed points on line
+//      face                one point per face intersection
+//      midPoint            one point per cell, inbetween two face intersections
+//      midPointAndFace     combination of face and midPoint
+//
+//      polyLine            specified points, not nessecary on line, uses
+//                          tracking
+//      cloud               specified points, uses findCell
+//      triSurfaceMeshPointSet  points of triSurface
+//
+// axis: how to write point coordinate. Choice of
+// - x/y/z: x/y/z coordinate only
+// - xyz: three columns
+//  (probably does not make sense for anything but raw)
+// - distance: distance from start of sampling line (if uses line) or
+//             distance from first specified sampling point
+//
+// type specific:
+//      uniform, face, midPoint, midPointAndFace : start and end coordinate
+//      uniform: extra number of sampling points
+//      polyLine, cloud: list of coordinates
+//      patchCloud: list of coordinates and set of patches to look for nearest
+//      patchSeed: random sampling on set of patches. Points slightly off
+//                 face centre.
+sets
+(
+    lineinlet
+    {
+        type        midPoint;
+        axis        z;
+        start       (581322  4785805   930);
+        end         (581322  4785805   1500);
+    }
+
+    linemid
+    {
+        type        midPoint;
+        axis        z;
+        start       (581805.5  4785805   930);
+        end         (581805.5  4785805   1500);
+    }
+
+    linemid2
+    {
+        type        midPoint;
+        axis        z;
+        start       (581900  4785805   930);
+        end         (581900  4785805   1500);
+    }
+);
+
+surfaces
+(
+    constantPlane
+    {
+        type            plane;    // always triangulated
+        basePoint       (581805.5  4785805   1100);
+        normalVector    (0 0 1);
+
+        //- Optional: restrict to a particular zone
+        // zone        zone1;
+
+        //- Optional: do not triangulate (only for surfaceFormats that support
+        //            polygons)
+        //triangulate     false;
+    }
+);
+
+// ************************************************************************* //
