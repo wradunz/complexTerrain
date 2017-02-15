@@ -104,7 +104,7 @@ surfaces
         // Distance to surface
         distance        30;
 
-        cell            true;// optional: use isoSurface instead
+        //cell            true;// optional: use isoSurface instead
                                 // of isoSurfaceCell
         interpolate     true;
         regularise      false;  // Optional: do not simplify

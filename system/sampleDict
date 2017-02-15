@@ -21,6 +21,7 @@ interpolationScheme cellPoint;
 fields
 (
     U
+    V
 );
 
 // Set sampling definition: choice of

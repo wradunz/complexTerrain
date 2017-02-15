@@ -1,0 +1,168 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 4.0-665f1db4c1f1
+Exec   : snappyHexMesh -parallel -overwrite
+Date   : Feb 15 2017
+Time   : 18:00:10
+Host   : "radunz-Aspire-E5-571"
+PID    : 7264
+Case   : /home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty
+nProcs : 4
+Slaves : 
+3
+(
+"radunz-Aspire-E5-571.7265"
+"radunz-Aspire-E5-571.7266"
+"radunz-Aspire-E5-571.7267"
+)
+
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Read mesh in = 0.01 s
+
+Overall mesh bounding box  : (581321 4785370 930) (582290 4786240 1500)
+Relative tolerance         : 1e-06
+Absolute matching distance : 0.00142153473401
+
+Reading refinement surfaces.
+Read refinement surfaces in = 0.07 s
+
+Reading refinement shells.
+Read refinement shells in = 0 s
+
+Setting refinement level of surface to be consistent with shells.
+Checked shell refinement in = 0 s
+
+Reading features.
+Read features in = 0 s
+
+
+Determining initial surface intersections
+-----------------------------------------
+
+[2] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor2/cell_3.obj"
+[3] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor3/cell_40.obj"
+[0] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor0/cell_13.obj"
+[1] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor1/cell_0.obj"
+[2] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor2/cell_228.obj"
+[1] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor1/cell_225.obj"
+[0] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor0/cell_238.obj"
+[3] hexRef8 : Dumping cell as obj to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmpty/processor3/cell_265.obj"
+[1] 
+[1] 
+[1] [2] [3] 
+[3] 
+[3] --> FOAM FATAL ERROR: 
+[3] --> FOAM FATAL ERROR: 
+[1] Celllevel does not satisfy 2:1 constraint.
+On face 2 owner cell 0 has refinement 2 neighbour cell 225 has refinement 0
+[1] 
+[1]     From function void Foam::hexRef8::checkRefinementLevels(Foam::label, const labelList&) const
+[1]     in file polyTopoChange/polyTopoChange/hexRef8/hexRef8.C at line Celllevel does not satisfy 2:1 constraint.
+On face 120 owner cell 40 has refinement 0 neighbour cell 265 has refinement 2
+[3] 
+[3]     From function void Foam::hexRef8::checkRefinementLevels(Foam::label, const labelList&) const
+[3]     in file polyTopoChange/polyTopoChange/hexRef8/hexRef8.C at line 4853.
+[3] 
+FOAM parallel run aborting
+[3] 
+4853.
+[1] 
+FOAM parallel run aborting
+[1] 
+[0] 
+[0] 
+[0] --> FOAM FATAL ERROR: 
+[0] Celllevel does not satisfy 2:1 constraint.
+On face 41 owner cell 13 has refinement 2 neighbour cell 238 has refinement 0
+[0] 
+[0]     From function void Foam::hexRef8::checkRefinementLevels(Foam::label, const labelList&) const
+[0]     in file polyTopoChange/polyTopoChange/hexRef8/hexRef8.C at line 4853.
+[0] 
+FOAM parallel run aborting
+[0] 
+
+[2] 
+[2] --> FOAM FATAL ERROR: 
+[2] Celllevel does not satisfy 2:1 constraint.
+On face 11 owner cell 3 has refinement 2 neighbour cell 228 has refinement 0
+[2] 
+[2]     From function void Foam::hexRef8::checkRefinementLevels(Foam::label, const labelList&) const
+[2] [1] #0  [3] #0  Foam::error::printStack(Foam::Ostream&)Foam::error::printStack(Foam::Ostream&)[0] #0  Foam::error::printStack(Foam::Ostream&)    in file polyTopoChange/polyTopoChange/hexRef8/hexRef8.C at line 4853.
+[2] 
+FOAM parallel run aborting
+[2] 
+[2] #0  Foam::error::printStack(Foam::Ostream&) at ??:?
+[0] #1  Foam::error::abort() at ??:?
+[2] #1  Foam::error::abort() at ??:?
+[1] #1  Foam::error::abort() at ??:?
+[3] #1  Foam::error::abort() at ??:?
+[0] #2  Foam::hexRef8::checkRefinementLevels(int, Foam::List<int> const&) const at ??:?
+[1] #2  Foam::hexRef8::checkRefinementLevels(int, Foam::List<int> const&) const at ??:?
+[2] #2  Foam::hexRef8::checkRefinementLevels(int, Foam::List<int> const&) const at ??:?
+[3] #2  Foam::hexRef8::checkRefinementLevels(int, Foam::List<int> const&) const at ??:?
+[0] #3  Foam::hexRef8::hexRef8(Foam::polyMesh const&, bool) at ??:?
+[1] #3  Foam::hexRef8::hexRef8(Foam::polyMesh const&, bool) at ??:?
+[3] #3  Foam::hexRef8::hexRef8(Foam::polyMesh const&, bool) at ??:?
+[2] #3  Foam::hexRef8::hexRef8(Foam::polyMesh const&, bool) at ??:?
+[0] #4  Foam::meshRefinement::meshRefinement(Foam::fvMesh&, double, bool, Foam::refinementSurfaces const&, Foam::refinementFeatures const&, Foam::shellSurfaces const&) at ??:?
+[2] #4  Foam::meshRefinement::meshRefinement(Foam::fvMesh&, double, bool, Foam::refinementSurfaces const&, Foam::refinementFeatures const&, Foam::shellSurfaces const&) at ??:?
+[3] #4  Foam::meshRefinement::meshRefinement(Foam::fvMesh&, double, bool, Foam::refinementSurfaces const&, Foam::refinementFeatures const&, Foam::shellSurfaces const&) at ??:?
+[0] #5   at ??:?
+ at ??:?
+[1] #4  [2] #5  Foam::meshRefinement::meshRefinement(Foam::fvMesh&, double, bool, Foam::refinementSurfaces const&, Foam::refinementFeatures const&, Foam::shellSurfaces const&) at ??:?
+[3] #5  ??? at ??:?
+[1] #5   at ??:?
+[0] #6  __libc_start_main at ??:?
+[3] #6  __libc_start_main at ??:?
+[2] #6  __libc_start_main? in "/lib/x86_64-linux-gnu/libc.so.6"
+[0] #7   in "/lib/x86_64-linux-gnu/libc.so.6"
+[3] #7   in "/lib/x86_64-linux-gnu/libc.so.6"
+[2] #7  ? at ??:?
+[1] #6  __libc_start_main? at ??:?
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD 
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+? at ??:?
+ in "/lib/x86_64-linux-gnu/libc.so.6"
+[1] #7  ? at ??:?
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 7264 on
+node radunz-Aspire-E5-571 exiting improperly. There are two reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+--------------------------------------------------------------------------
+[radunz-Aspire-E5-571:07263] 2 more processes have sent help message help-mpi-api.txt / mpi-abort
+[radunz-Aspire-E5-571:07263] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
