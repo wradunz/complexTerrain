@@ -32,17 +32,27 @@ boundaryField
         value           $internalField;
     }
 
-    outlet
+    north
+    {
+        type            slip;
+    }
+
+    east
+    {
+        type            atmBoundaryLayerInletEpsilon;
+        #include        "include/ABLConditions"
+    }
+
+    south
+    {
+        type            slip;
+    }
+
+    west
     {
         type            inletOutlet;
         inletValue      uniform $turbulentEpsilon;
         value           $internalField;
-    }
-
-    inlet
-    {
-        type            atmBoundaryLayerInletEpsilon;
-        #include        "include/ABLConditions"
     }
 
     ground
@@ -50,7 +60,7 @@ boundaryField
         type            zeroGradient;
     }
 
-    #include "include/sideAndTopPatches"
+    #include        "include/topPatch"   
 }
 
 

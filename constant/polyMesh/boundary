@@ -8,52 +8,52 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
-    class       volScalarField;
-    object      p;
+    format      binary;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#include        "include/initialConditions"
-
-dimensions      [0 2 -2 0 0 0 0];
-
-internalField   uniform $pressure;
-
-boundaryField
-{
+6
+(
     north
     {
-        type            slip;
+        type            patch;
+        nFaces          600;
+        startFace       51900;
     }
-
     east
     {
-        type            zeroGradient;
+        type            patch;
+        nFaces          600;
+        startFace       52500;
     }
-
     south
     {
-        type            slip;
+        type            patch;
+        nFaces          600;
+        startFace       53100;
     }
-
     west
     {
-        type            uniformFixedValue;
-        uniformValue    constant $pressure;
+        type            patch;
+        nFaces          600;
+        startFace       53700;
     }
-
-    terrain
-    {
-        type            zeroGradient;
-    }
-
     ground
     {
-        type            zeroGradient;
+        type            wall;
+        inGroups        1(wall);
+        nFaces          900;
+        startFace       54300;
     }
-
-    #include        "include/topPatch"
-}
+    top
+    {
+        type            patch;
+        nFaces          900;
+        startFace       55200;
+    }
+)
 
 // ************************************************************************* //

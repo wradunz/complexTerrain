@@ -22,12 +22,22 @@ internalField   uniform $pressure;
 
 boundaryField
 {
-    outlet
+    north
+    {
+        type            slip;
+    }
+
+    east
     {
         type            zeroGradient;
     }
 
-    inlet
+    south
+    {
+        type            slip;
+    }
+
+    west
     {
         type            uniformFixedValue;
         uniformValue    constant $pressure;
@@ -43,7 +53,10 @@ boundaryField
         type            zeroGradient;
     }
 
-    #include "include/sideAndTopPatches"
+    "proc.*"
+    {
+        type            processor;
+    }
 }
 
 // ************************************************************************* //

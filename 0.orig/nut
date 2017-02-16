@@ -23,13 +23,23 @@ boundaryField
 {
     #include "include/ABLConditions"
 
-    outlet
+    north
+    {
+        type            slip;
+    }
+
+    east
     {
         type            calculated;
         value           uniform 0;
     }
 
-    inlet
+    south
+    {
+        type            slip;
+    }
+
+    west
     {
         type            calculated;
         value           uniform 0;
@@ -48,7 +58,7 @@ boundaryField
         value           uniform 0;
     }
 
-    #include "include/sideAndTopPatches"
+    #include        "include/topPatch"
 }
 
 

@@ -23,17 +23,27 @@ internalField   uniform $flowVelocity;
 
 boundaryField
 {
-    inlet
+    north
+    {
+        type            slip;
+    }
+
+    east
+    {
+        type            atmBoundaryLayerInletVelocity;
+        #include        "include/ABLConditions"
+    }
+
+    south
+    {
+        type            slip;
+    }
+
+    west
     {
         type            inletOutlet;
         inletValue      uniform (0 0 0);
         value           $internalField;
-    }
-
-    outlet
-    {
-        type            atmBoundaryLayerInletVelocity;
-        #include        "include/ABLConditions"
     }
 
     terrain
@@ -50,7 +60,10 @@ boundaryField
         uniformValue    constant (0 0 0);
     }
 
-    #include "include/sideAndTopPatches"
+    "proc.*"
+    {
+        type            processor;
+    }
 }
 
 

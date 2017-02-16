@@ -22,17 +22,27 @@ internalField   uniform $turbulentKE;
 
 boundaryField
 {
-    inlet
+    north
+    {
+        type            slip;
+    }
+
+    east
+    {
+        type            atmBoundaryLayerInletK;
+        #include        "include/ABLConditions"
+    }
+
+    south
+    {
+        type            slip;
+    }
+
+    west
     {
         type            inletOutlet;
         inletValue      uniform $turbulentKE;
         value           $internalField;
-    }
-
-    outlet
-    {
-        type            atmBoundaryLayerInletK;
-        #include        "include/ABLConditions"
     }
 
     terrain
@@ -46,7 +56,15 @@ boundaryField
         type            zeroGradient;
     }
 
-    #include "include/sideAndTopPatches"
+    top
+    {
+        type slip;
+    }
+
+    "proc.*"
+    {
+        type            processor;
+    } 
 }
 
 

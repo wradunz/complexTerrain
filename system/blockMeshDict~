@@ -40,7 +40,15 @@ edges
 
 boundary
 (
-    inlet
+    north
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    outlet
     {
         type patch;
         faces
@@ -57,7 +65,7 @@ boundary
             (3 7 6 2)
         );
     }
-    outlet
+    inlet
     {
         type patch;
         faces
