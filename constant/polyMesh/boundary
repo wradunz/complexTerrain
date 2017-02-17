@@ -20,39 +20,39 @@ FoamFile
     north
     {
         type            patch;
-        nFaces          600;
-        startFace       51900;
+        nFaces          2121;
+        startFace       516395;
     }
     east
     {
         type            patch;
-        nFaces          600;
-        startFace       52500;
+        nFaces          2122;
+        startFace       518516;
     }
     south
     {
         type            patch;
-        nFaces          600;
-        startFace       53100;
+        nFaces          2113;
+        startFace       520638;
     }
     west
     {
         type            patch;
-        nFaces          600;
-        startFace       53700;
-    }
-    ground
-    {
-        type            wall;
-        inGroups        1(wall);
-        nFaces          900;
-        startFace       54300;
+        nFaces          2123;
+        startFace       522751;
     }
     top
     {
         type            patch;
         nFaces          900;
-        startFace       55200;
+        startFace       524874;
+    }
+    terrain
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          14400;
+        startFace       525774;
     }
 )
 
