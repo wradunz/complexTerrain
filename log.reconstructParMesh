@@ -1,0 +1,125 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 4.0-665f1db4c1f1
+Exec   : reconstructParMesh -constant
+Date   : Feb 17 2017
+Time   : 15:58:36
+Host   : "radunz-Aspire-E5-571"
+PID    : 2304
+Case   : /home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmptyWest
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+This is an experimental tool which tries to merge individual processor
+meshes back into one master mesh. Use it if the original master mesh has
+been deleted or if the processor meshes have been modified (topology change).
+This tool will write the resulting mesh to a new time step and construct
+xxxxProcAddressing files in the processor meshes so reconstructPar can be
+used to regenerate the fields on the master mesh.
+
+Not well tested & use at your own risk!
+
+Merge tolerance : 1e-07
+Write tolerance : 1e-12
+Doing geometric matching on correct procBoundaries only.
+This assumes a correct decomposition.
+Found 4 processor directories
+
+Reading database "turbineSitingEmptyWest/processor0"
+Reading database "turbineSitingEmptyWest/processor1"
+Reading database "turbineSitingEmptyWest/processor2"
+Reading database "turbineSitingEmptyWest/processor3"
+Time = constant
+
+Reading points from "turbineSitingEmptyWest/processor0" for time = constant
+
+Reading points from "turbineSitingEmptyWest/processor1" for time = constant
+
+Reading points from "turbineSitingEmptyWest/processor2" for time = constant
+
+Reading points from "turbineSitingEmptyWest/processor3" for time = constant
+
+Overall mesh bounding box  : (581321 4785370 938.709760811) (582290 4786240 1500)
+Relative tolerance         : 1e-07
+Absolute matching distance : 0.000141806478436
+
+Constructing empty mesh to add to.
+
+Reading mesh to add from "turbineSitingEmptyWest/processor0" for time = constant
+
+Adding to master mesh
+
+
+Reading mesh to add from "turbineSitingEmptyWest/processor1" for time = constant
+
+Adding to master mesh
+
+
+Reading mesh to add from "turbineSitingEmptyWest/processor2" for time = constant
+
+Adding to master mesh
+
+
+Reading mesh to add from "turbineSitingEmptyWest/processor3" for time = constant
+
+Adding to master mesh
+
+
+mergeSharedPoints : detected 0 points that are to be merged.
+
+Writing merged mesh to "/home/radunz/OpenFOAM/radunz-4.1/run/incompressible/simpleFoam/turbineSitingEmptyWest/constant"
+
+Reconstructing the addressing from the processor meshes to the newly reconstructed mesh
+
+Reading processor 0 mesh from "turbineSitingEmptyWest/processor0"
+Writing pointProcAddressing to "turbineSitingEmptyWest/processor0/constant/polyMesh"
+Writing faceProcAddressing to "turbineSitingEmptyWest/processor0/constant/polyMesh"
+Writing cellProcAddressing to "turbineSitingEmptyWest/processor0/constant/polyMesh"
+Writing boundaryProcAddressing to "turbineSitingEmptyWest/processor0/constant/polyMesh"
+
+Reading processor 1 mesh from "turbineSitingEmptyWest/processor1"
+Writing pointProcAddressing to "turbineSitingEmptyWest/processor1/constant/polyMesh"
+Writing faceProcAddressing to "turbineSitingEmptyWest/processor1/constant/polyMesh"
+Writing cellProcAddressing to "turbineSitingEmptyWest/processor1/constant/polyMesh"
+Writing boundaryProcAddressing to "turbineSitingEmptyWest/processor1/constant/polyMesh"
+
+Reading processor 2 mesh from "turbineSitingEmptyWest/processor2"
+Writing pointProcAddressing to "turbineSitingEmptyWest/processor2/constant/polyMesh"
+Writing faceProcAddressing to "turbineSitingEmptyWest/processor2/constant/polyMesh"
+Writing cellProcAddressing to "turbineSitingEmptyWest/processor2/constant/polyMesh"
+Writing boundaryProcAddressing to "turbineSitingEmptyWest/processor2/constant/polyMesh"
+
+Reading processor 3 mesh from "turbineSitingEmptyWest/processor3"
+Writing pointProcAddressing to "turbineSitingEmptyWest/processor3/constant/polyMesh"
+Writing faceProcAddressing to "turbineSitingEmptyWest/processor3/constant/polyMesh"
+Writing cellProcAddressing to "turbineSitingEmptyWest/processor3/constant/polyMesh"
+Writing boundaryProcAddressing to "turbineSitingEmptyWest/processor3/constant/polyMesh"
+
+Time = 50
+
+No mesh.
+
+Time = 100
+
+No mesh.
+
+Time = 150
+
+No mesh.
+
+Time = 197
+
+No mesh.
+
+End.
+

@@ -1,0 +1,102 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# Make dummy 0 directory
+mkdir 0
+
+#Creates base mesh and decomposes it into "processor*" directories:
+runApplication blockMesh
+cp system/decomposeParDict.hierarchical system/decomposeParDict
+runApplication decomposePar
+
+#Runs snappyHexMesh in parallel:
+cp system/decomposeParDict.ptscotch system/decomposeParDict
+runParallel snappyHexMesh -overwrite
+
+#dont know whats this shite \/
+#find . -type f -iname "*level*" -exec rm {} \;
+
+
+
+
+#START LOOP:
+n_direction=0;
+
+
+while [n_direction < 12]
+deg_direction=n_direction*30;
+do
+#botar tudo aqui dentro
+
+#At the end calls counter
+n_direction++;
+done
+##Read windData for n_direction;
+
+#Write windData to 0.orig dictionaries;
+
+#Copies 0.orig files to each processor*/0 directories:
+ls -d processor* | xargs -I {} cp -r 0.orig ./{}/0
+
+#Runs simpleFoam:
+runParallel `getApplication`
+
+#Reconstructs mesh in folder "constant/polyMesh":
+runApplication reconstructParMesh -constant
+
+#Maps partitioned results into the reconstruted mesh:
+runApplication reconstructPar
+
+##EXPORT RESULTS TO "results" folder;
+mkdir results/{deg_direction}_deg
+mv -r lastTimeStepFolder results/{deg_direction}_deg
+mv -r postProcessing/residuals results/{deg_direction}_deg
+
+##CLEAN processor* non-mesh data;
+cd processor1
+ls | grep -v constant | xargs rm -r
+cd ../processor2
+ls | grep -v constant | xargs rm -r
+cd ../processor3
+ls | grep -v constant | xargs rm -r
+cd ../processor4
+ls | grep -v constant | xargs rm -r
+cd ..
+
+##CLEAN results;
+#cleanTimeDirectories()
+    {
+    echo "Cleaning $PWD case"
+    zeros=""
+    while [ ${#zeros} -lt 8 ]
+    do
+        timeDir="0.${zeros}[1-9]*"
+        rm -rf ./${timeDir} ./-${timeDir} > /dev/null 2>&1
+        zeros="0$zeros"
+    done
+    rm -rf ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
+    }
+
+#cleanDynamicCode()
+    {
+    if [ -d system -a -d dynamicCode ]
+    then
+        rm -rf dynamicCode > /dev/null 2>&1
+    fi
+    }
+
+    rm -rf postProcessing > /dev/null 2>&1
+    rm -rf probes* > /dev/null 2>&1
+    rm -rf forces* > /dev/null 2>&1
+    rm -rf graphs* > /dev/null 2>&1
+    rm -rf sets > /dev/null 2>&1
+    rm -rf surfaceSampling > /dev/null 2>&1
+    rm -rf cuttingPlane > /dev/null 2>&1
+    rm -rf system/machines > /dev/null 2>&1
+
+##run simpleFoam again;
+##repeat;
+#------------------------------------------------------------------------------

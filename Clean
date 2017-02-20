@@ -1,0 +1,76 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+# Source tutorial clean functions
+. $WM_PROJECT_DIR/bin/tools/CleanFunctions
+
+rm -rf 0 > /dev/null 2>&1
+
+#cleanCase
+{
+    #cleanTimeDirectories()
+    {
+    echo "Cleaning $PWD case"
+    zeros=""
+    while [ ${#zeros} -lt 8 ]
+    do
+        timeDir="0.${zeros}[1-9]*"
+        rm -rf ./${timeDir} ./-${timeDir} > /dev/null 2>&1
+        zeros="0$zeros"
+    done
+    rm -rf ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
+    }
+
+    #cleanDynamicCode()
+    {
+    if [ -d system -a -d dynamicCode ]
+    then
+        rm -rf dynamicCode > /dev/null 2>&1
+    fi
+    }
+
+    rm -rf processor* > /dev/null 2>&1
+    rm -rf postProcessing > /dev/null 2>&1
+    rm -rf probes* > /dev/null 2>&1
+    rm -rf forces* > /dev/null 2>&1
+    rm -rf graphs* > /dev/null 2>&1
+    rm -rf sets > /dev/null 2>&1
+    rm -rf surfaceSampling > /dev/null 2>&1
+    rm -rf cuttingPlane > /dev/null 2>&1
+    rm -rf system/machines > /dev/null 2>&1
+
+    if [ -d constant/polyMesh ]
+    then
+        (cd constant/polyMesh && \
+            rm -rf \
+            allOwner* cell* face* meshModifiers* \
+            owner* neighbour* point* edge* \
+            cellLevel* pointLevel* refinementHistory* level0Edge* surfaceIndex* sets \
+            boundary \
+            > /dev/null 2>&1 \
+        )
+    fi
+    if [ -d constant ]
+    then
+        (cd constant && \
+            rm -rf \
+            cellToRegion cellLevel* pointLevel* \
+            > /dev/null 2>&1 \
+        )
+    fi
+
+    rm -rf constant/tetDualMesh > /dev/null 2>&1
+
+    rm -rf VTK > /dev/null 2>&1
+    rm -f 0/cellLevel 0/pointLevel 0/cellDist constant/cellDecomposition
+
+    if [ -e system/blockMeshDict.m4 ]
+    then
+        rm -f system/blockMeshDict > /dev/null 2>&1
+    fi
+}
+
+# Remove decomposeParDict
+rm -f system/decomposeParDict
+
+#------------------------------------------------------------------------------
