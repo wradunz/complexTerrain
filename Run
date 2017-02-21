@@ -20,20 +20,17 @@ runParallel snappyHexMesh -overwrite
 #find . -type f -iname "*level*" -exec rm {} \;
 
 
-
-
 #START LOOP:
-n_direction=0;
 
+n_dir=0;
 
-while [n_direction < 12]
-deg_direction=n_direction*30;
+while [ $n_dir -lt 12 ]
 do
 #botar tudo aqui dentro
+deg_dir=$(($n_dir * 30));
+echo "Direction number is: "$n_dir 
+echo "Direction sector is: "$deg_dir
 
-#At the end calls counter
-n_direction++;
-done
 ##Read windData for n_direction;
 
 #Write windData to 0.orig dictionaries;
@@ -50,34 +47,27 @@ runApplication reconstructParMesh -constant
 #Maps partitioned results into the reconstruted mesh:
 runApplication reconstructPar
 
-##EXPORT RESULTS TO "results" folder;
-mkdir results/{deg_direction}_deg
-mv -r lastTimeStepFolder results/{deg_direction}_deg
-mv -r postProcessing/residuals results/{deg_direction}_deg
+#Copy last timestamp folder to results:
+mkdir results/"${deg_dir}_deg"
+cp -r "$(ls -d [0-9]* | grep '[0-9]*' | sort -n | tail -n1)" results/"${deg_dir}_deg"
 
-##CLEAN processor* non-mesh data;
-cd processor1
-ls | grep -v constant | xargs rm -r
-cd ../processor2
-ls | grep -v constant | xargs rm -r
-cd ../processor3
-ls | grep -v constant | xargs rm -r
-cd ../processor4
-ls | grep -v constant | xargs rm -r
-cd ..
+#Copy residuals as well:
+mv -r postProcessing/residuals results/{deg_direction}_deg
 
 ##CLEAN results;
 #cleanTimeDirectories()
-    {
-    echo "Cleaning $PWD case"
-    zeros=""
-    while [ ${#zeros} -lt 8 ]
-    do
-        timeDir="0.${zeros}[1-9]*"
-        rm -rf ./${timeDir} ./-${timeDir} > /dev/null 2>&1
-        zeros="0$zeros"
-    done
-    rm -rf ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
+#    {
+#    echo "Cleaning $PWD case"
+#    zeros=""
+#   while [ ${#zeros} -lt 8 ]
+#   do
+#        timeDir="0.${zeros}[1-9]*"
+#        rm -rf ./${timeDir} ./-${timeDir} > /dev/null 2>&1
+#        zeros="0$zeros"
+#    done
+
+#Now cleaning time directories and log:
+    rm -rf ./0 ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
     }
 
 #cleanDynamicCode()
@@ -97,6 +87,19 @@ cd ..
     rm -rf cuttingPlane > /dev/null 2>&1
     rm -rf system/machines > /dev/null 2>&1
 
-##run simpleFoam again;
-##repeat;
+	#CLEAN processor* non-mesh data;
+	cd processor1
+	ls | grep -v constant | xargs rm -r
+	cd ../processor2
+	ls | grep -v constant | xargs rm -r
+	cd ../processor3
+	ls | grep -v constant | xargs rm -r
+	cd ../processor4
+	ls | grep -v constant | xargs rm -r
+	cd ..
+
+#At the end calls counter
+n_dir=$(($n_dir+1));
+done
+
 #------------------------------------------------------------------------------
