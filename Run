@@ -24,9 +24,10 @@ runParallel snappyHexMesh -overwrite
 
 n_dir=0;
 
+#For all wind directions:
 while [ $n_dir -lt 12 ]
 do
-#botar tudo aqui dentro
+
 deg_dir=$(($n_dir * 30));
 echo "Direction number is: "$n_dir 
 echo "Direction sector is: "$deg_dir
