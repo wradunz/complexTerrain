@@ -29,7 +29,8 @@ boundaryField
 
     east
     {
-        type            zeroGradient;
+        type            uniformFixedValue;
+        uniformValue    constant $pressure;
     }
 
     south
@@ -39,8 +40,7 @@ boundaryField
 
     west
     {
-        type            uniformFixedValue;
-        uniformValue    constant $pressure;
+        type            zeroGradient;
     }
 
     terrain

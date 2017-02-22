@@ -60,10 +60,7 @@ boundaryField
         uniformValue    constant (0 0 0);
     }
 
-    "proc.*"
-    {
-        type            processor;
-    }
+    #include        "include/topPatch"
 }
 
 

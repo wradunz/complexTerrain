@@ -39,8 +39,9 @@ boundaryField
 
     east
     {
-        type            atmBoundaryLayerInletEpsilon;
-        #include        "include/ABLConditions"
+        type            inletOutlet;
+        inletValue      uniform $turbulentEpsilon;
+        value           $internalField;
     }
 
     south
@@ -50,9 +51,8 @@ boundaryField
 
     west
     {
-        type            inletOutlet;
-        inletValue      uniform $turbulentEpsilon;
-        value           $internalField;
+        type            atmBoundaryLayerInletEpsilon;
+        #include        "include/ABLConditions"
     }
 
     ground

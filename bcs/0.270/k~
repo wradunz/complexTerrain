@@ -61,10 +61,7 @@ boundaryField
         type slip;
     }
 
-    "proc.*"
-    {
-        type            processor;
-    } 
+    #include        "include/topPatch"
 }
 
 

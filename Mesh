@@ -1,0 +1,24 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+#Now cleaning time directories and log:
+    rm -rf ./0 ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
+
+#Remove previous results folder:
+rm -r ./results
+
+# Make dummy 0 directory
+mkdir 0
+
+#Creates base mesh and decomposes it into "processor*" directories:
+runApplication blockMesh
+cp system/decomposeParDict.hierarchical system/decomposeParDict
+runApplication decomposePar
+
+#Runs snappyHexMesh in parallel:
+cp system/decomposeParDict.ptscotch system/decomposeParDict
+runParallel snappyHexMesh -overwrite
+#------------------------------------------------------------------------------

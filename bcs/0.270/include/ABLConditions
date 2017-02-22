@@ -7,14 +7,14 @@
 \*---------------------------------------------------------------------------*/
 
 
-#include        "../../windData"
+ 
 
-Uref                 ${inSpeed[${n_dir}]};
-Zref                 ${inZref[${n_dir}]};
+Uref                 10;
+Zref                 10;
 zDir                 (0 0 1);
 flowDir              (1 0 0);
-z0                   uniform ${inZ0[${n_dir}]};
-zGround              uniform windZground[10];
+z0                   uniform 0.1;
+zGround              uniform 935.0;
 value                $internalField;
 
 // ************************************************************************* //

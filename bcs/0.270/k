@@ -29,8 +29,9 @@ boundaryField
 
     east
     {
-        type            atmBoundaryLayerInletK;
-        #include        "include/ABLConditions"
+        type            inletOutlet;
+        inletValue      uniform $turbulentKE;
+        value           $internalField;
     }
 
     south
@@ -40,9 +41,8 @@ boundaryField
 
     west
     {
-        type            inletOutlet;
-        inletValue      uniform $turbulentKE;
-        value           $internalField;
+        type            atmBoundaryLayerInletK;
+        #include        "include/ABLConditions"
     }
 
     terrain

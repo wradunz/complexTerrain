@@ -60,15 +60,7 @@ boundaryField
         type            zeroGradient;
     }
 
-    top
-    {
-        type slip;
-    }
-
-    "proc.*"
-    {
-        type            processor;
-    }    
+    #include        "include/topPatch"   
 }
 
 
