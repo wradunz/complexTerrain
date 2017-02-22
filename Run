@@ -75,15 +75,15 @@ mv -r postProcessing/residuals results/{deg_direction}_deg
 
 #Now cleaning time directories and log:
     rm -rf ./0 ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
-    }
+    
 
 #cleanDynamicCode()
-    {
+    
     if [ -d system -a -d dynamicCode ]
     then
         rm -rf dynamicCode > /dev/null 2>&1
     fi
-    }
+    
 
     rm -rf postProcessing > /dev/null 2>&1
     rm -rf probes* > /dev/null 2>&1

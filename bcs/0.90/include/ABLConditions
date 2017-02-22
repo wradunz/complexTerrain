@@ -8,11 +8,11 @@
 
 #include        "../../windData"
 
-Uref                 windSpeed[4];
-Zref                 windZref[4];
+Uref                 ${inSpeed[${n_dir}]};
+Zref                 ${inZref[${n_dir}]};
 zDir                 (0 0 1);
 flowDir              (-1 0 0);
-z0                   uniform windZ0[4];
+z0                   uniform ${inZ0[${n_dir}]};
 zGround              uniform windZground[4];
 value                $internalField;
 

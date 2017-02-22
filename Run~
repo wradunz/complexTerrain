@@ -43,7 +43,7 @@ sed -i '/Zref/c\Zref                 ${inZref[${n_dir}]};' bcs/"0.${deg_dir}"/in
 sed -i '/z0/c\z0                   uniform ${inZ0[${n_dir}]};' bcs/"0.${deg_dir}"/include/ABLConditions
 
 #Copies 0.orig files to each processor*/0 directories:
-ls -d processor* | xargs -I {} cp -r 0.orig ./{}/0
+ls -d processor* | xargs -I {} cp -r bcs/"0.${deg_dir}" ./{}/0
 
 #Runs simpleFoam:
 runParallel `getApplication`
