@@ -33,11 +33,17 @@ echo "Direction number is: "$n_dir
 echo "Direction sector is: "$deg_dir
 
 ##Read windData for n_direction;
+./inputData
 
-#Write windData to 0.orig dictionaries;
+#Write windData to ABLConditions dictionaries;
+sed -i '/Uref/c\Uref                 ${inSpeed[${n_dir}]};' bcs/"0.${deg_dir}"/include/ABLConditions
+
+sed -i '/Zref/c\Zref                 ${inZref[${n_dir}]};' bcs/"0.${deg_dir}"/include/ABLConditions
+
+sed -i '/z0/c\z0                   uniform ${inZ0[${n_dir}]};' bcs/"0.${deg_dir}"/include/ABLConditions
 
 #Copies 0.orig files to each processor*/0 directories:
-ls -d processor* | xargs -I {} cp -r 0.orig ./{}/0
+ls -d processor* | xargs -I {} cp -r bcs/"0.${deg_dir}" ./{}/0
 
 #Runs simpleFoam:
 runParallel `getApplication`
