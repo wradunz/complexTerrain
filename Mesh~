@@ -8,11 +8,10 @@ cd ${0%/*} || exit 1    # Run from this directory
     rm -rf ./0 ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
 
 #Remove previous results folder:
-rm -r ./results
+rm -r ./results ./processor*
 
 # Make dummy 0 directory
 mkdir 0
-
 
 #Creates base mesh and decomposes it into "processor*" directories:
 runApplication blockMesh

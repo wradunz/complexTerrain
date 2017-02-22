@@ -7,9 +7,6 @@ cd ${0%/*} || exit 1    # Run from this directory
 #Now cleaning time directories and log:
     rm -rf ./0 ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
 
-#Remove previous results folder:
-rm -r ./results
-
 # Make dummy 0 directory
 mkdir 0
 

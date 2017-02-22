@@ -7,10 +7,27 @@ cd ${0%/*} || exit 1    # Run from this directory
 rm -rf 0 > /dev/null 2>&1
 
 #cleanCase
-cleanCase()
 {
-    cleanTimeDirectories
-    cleanDynamicCode
+    #cleanTimeDirectories()
+    {
+    echo "Cleaning $PWD case"
+    zeros=""
+    while [ ${#zeros} -lt 8 ]
+    do
+        timeDir="0.${zeros}[1-9]*"
+        rm -rf ./${timeDir} ./-${timeDir} > /dev/null 2>&1
+        zeros="0$zeros"
+    done
+    rm -rf ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
+    }
+
+    #cleanDynamicCode()
+    {
+    if [ -d system -a -d dynamicCode ]
+    then
+        rm -rf dynamicCode > /dev/null 2>&1
+    fi
+    }
 
     rm -rf processor* > /dev/null 2>&1
     rm -rf postProcessing > /dev/null 2>&1

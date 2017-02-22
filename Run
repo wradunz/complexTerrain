@@ -50,24 +50,10 @@ cp -r "$(ls -d [0-9]* | grep '[0-9]*' | sort -n | tail -n1)" results/"${deg_dir}
 #Copy residuals as well:
 #cp -r postProcessing/residuals results/"${deg_dir}_deg"
 
-##CLEAN results;
-#cleanTimeDirectories()
-#    {
-#    echo "Cleaning $PWD case"
-#    zeros=""
-#   while [ ${#zeros} -lt 8 ]
-#   do
-#        timeDir="0.${zeros}[1-9]*"
-#        rm -rf ./${timeDir} ./-${timeDir} > /dev/null 2>&1
-#        zeros="0$zeros"
-#    done
-
 #Now cleaning time directories and log:
     rm -rf ./0 ./[1-9]* ./-[1-9]* ./log ./log.* ./log-* ./logSummary.* ./*.xml ./ParaView* ./paraFoam* ./*.OpenFOAM ./*.blockMesh ./.setSet > /dev/null 2>&1
     
-
-#cleanDynamicCode()
-    
+#Clean dynamic code:    
     if [ -d system -a -d dynamicCode ]
     then
         rm -rf dynamicCode > /dev/null 2>&1
